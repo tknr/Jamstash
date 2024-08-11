@@ -87,7 +87,7 @@
 	.smcolumn {
 		width: 75%;
 		background: rgba(255, 255, 255, 0.8);
-		border-bottom; none;
+		border-bottom: none;
 		min-width: 292px;
 		top: 120px;
 		margin-bottom: -122px;

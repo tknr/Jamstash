@@ -1,7 +1,13 @@
 images/Thumbs.db
 bower_components
-dist
+#dist
 node_modules
 /.tmp
 /.ssh
 /coverage
+package-lock.json
+yarn.lock
+.yarn
+.tmp
+
+

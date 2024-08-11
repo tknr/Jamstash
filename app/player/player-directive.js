@@ -113,13 +113,14 @@ angular.module('jamstash.player.directive', ['jamstash.player.service', 'jamstas
                         scope.fancyboxOpenImage(newSong.coverartfull);
                     }
                     var media = {};
-                    if (['oga', 'm4a', 'mp3', 'flac'].indexOf(newSong.suffix) > -1) {
+                    if (['oga', 'm4a', 'mp3', 'flac'].includes(newSong.suffix)) {
                         media[newSong.suffix] = newSong.url;
                         media['duration'] = newSong.duration;
                     }
                     $player.jPlayer('setMedia', media);
+                    $player.jPlayer('mute', false);
                     if (globals.settings.Jukebox) {
-                        $player.jPlayer('mute', true);
+                        //$player.jPlayer('mute', true);
                         subsonic.addToJukebox(newSong);
                     }
                     if (playerService.loadSong === true || globals.settings.Jukebox) {
