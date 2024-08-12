@@ -26,6 +26,14 @@
     "url": "https://github.com/tsquillario/Jamstash.git"
   },
   "main": "app/index.html",
+  "scripts": {
+    "build": "npx grunt build",
+    "coverage": "npx grunt coverage",
+    "serve": "npx grunt serve",
+    "bump:major": "npx grunt bump:major",
+    "bump:minor": "npx grunt bump:minor",
+    "bump:patch": "npx grunt bump:patch"
+  },
   "dependencies": {},
   "devDependencies": {
     "bower": "^1.8.8",
