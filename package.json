@@ -32,6 +32,9 @@
     "serve": "npx grunt serve",
     "coverage": "npx grunt coverage",
     "build": "npx grunt build",
+    "bump:major": "npx grunt bump:major",
+    "bump:minor": "npx grunt bump:minor",
+    "bump:patch": "npx grunt bump:patch",
     "ncu": "npx ncu"
   },
   "dependencies": {},
