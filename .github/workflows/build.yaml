@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: "Checkout Jamstash"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           # Need the gh-pages branch to be available
           fetch-depth: 0
@@ -52,7 +52,7 @@ jobs:
 
       - name: Upload artifact
         if: "!startsWith(github.ref, 'refs/tags/')"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Jamstash-${{ steps.get_sha.outputs.SHA }}
           path: ./jamstash.zip
@@ -71,7 +71,7 @@ jobs:
       - name: "Create release"
         id: create_release
         if: startsWith(github.ref, 'refs/tags/')
-        uses: actions/create-release@v1
+        uses: actions/create-release@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
