@@ -1,8 +1,8 @@
 {
   "name": "jamstash",
-  "version": "4.7.2",
+  "version": "4.7.3",
   "description": "HTML5 Audio Streamer for Subsonic, Archive.org browsing and streaming",
-  "author": "Trevor Squillario (https://github.com/tsquillario)",
+  "author": "tknr (https://github.com/tknr)",
   "contributors": [
     "tsquillario (https://github.com/tsquillario)",
     "maletor (https://github.com/maletor)",
@@ -12,7 +12,8 @@
     "kennyhwang (https://github.com/kennyhwang)",
     "ioggstream (https://github.com/ioggstream)",
     "x37v (https://github.com/x37v)",
-    "Hyzual (https://github.com/Hyzual)"
+    "Hyzual (https://github.com/Hyzual)",
+    "tknr (https://github.com/tknr)"
   ],
   "license": "GPL-2.0",
   "homepage": "http://jamstash.com",
@@ -23,9 +24,19 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/tsquillario/Jamstash.git"
+    "url": "https://github.com/tknr/Jamstash.git"
   },
   "main": "app/index.html",
+  "scripts": {
+    "test": "grunt test",
+    "serve": "npx grunt serve",
+    "coverage": "npx grunt coverage",
+    "build": "npx grunt build",
+    "bump:major": "npx grunt bump:major",
+    "bump:minor": "npx grunt bump:minor",
+    "bump:patch": "npx grunt bump:patch",
+    "ncu": "npx ncu"
+  },
   "dependencies": {},
   "devDependencies": {
     "bower": "^1.8.8",
@@ -55,14 +66,12 @@
     "karma-jasmine": "^1.0.2",
     "karma-ng-html2js-preprocessor": "^1.0.0",
     "karma-notify-reporter": "^1.0.1",
+    "npm-check-updates": "^17.0.6",
     "serve-static": "^1.13.1",
     "time-grunt": "^1.2.1"
   },
   "engines": {
     "node": ">=0.10.0"
-  },
-  "scripts": {
-    "test": "grunt test"
   },
   "bugs": {
     "url": "https://github.com/tsquillario/Jamstash/issues"
