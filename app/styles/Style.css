@@ -1070,6 +1070,8 @@ ul.songlist li:hover
     padding: 5px 10px;
     margin: 2px 0 0 1px;
     z-index:999;
+    height: 70%;
+    overflow-y: scroll;
 }
 .submenu a
 {
