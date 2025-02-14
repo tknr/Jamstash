@@ -491,6 +491,8 @@ ul.actionlist li
 #AutoAlbumContainer a.nextprev
 {
     padding: 4px;
+    font-weight:bold !important;
+    color:#000;
 }
 #AutoAlbumContainer a.nextprev:hover
 {
