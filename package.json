@@ -60,7 +60,7 @@
     "grunt-svg-sprite": "^2.0.2",
     "grunt-usemin": "^3.1.1",
     "grunt-wiredep": "^3.0.1",
-    "jasmine-core": "^5.5.0",
+    "jasmine-core": "^5.6.0",
     "jit-grunt": "^0.10.0",
     "karma": "^6.4.4",
     "karma-chrome-launcher": "^3.2.0",

@@ -55,7 +55,7 @@ angular.module('jamstash.settings.service', [])
         DefaultAlbumSort: this.AlbumSorts[0],
         DefaultArchiveAlbumSort: "date desc",
         Jukebox: false,
-        AutoPlay: false,
+        AutoPlay: true,
         LoopQueue: false,
         Repeat: false,
         // Advanced

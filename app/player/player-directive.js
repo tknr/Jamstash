@@ -118,8 +118,9 @@ angular.module('jamstash.player.directive', ['jamstash.player.service', 'jamstas
                         media['duration'] = newSong.duration;
                     }
                     $player.jPlayer('setMedia', media);
+                    $player.jPlayer('mute', false);
                     if (globals.settings.Jukebox) {
-                        $player.jPlayer('mute', true);
+                        //$player.jPlayer('mute', true);
                         subsonic.addToJukebox(newSong);
                     }
                     if (playerService.loadSong === true || globals.settings.Jukebox) {
