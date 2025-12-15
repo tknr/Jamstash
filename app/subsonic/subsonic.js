@@ -550,10 +550,18 @@ angular.module('jamstash.subsonic.controller', [
 
             $scope.exportPlaylist = function () {
                 if (!$scope.selectedPlaylist) {
-                    notifications.updateMessage('Please select a playlist to download.');
+                    notifications.updateMessage('Please select a playlist to export.');
                     return;
                 }
                 window.open(globals.settings.Server + '/exportPlaylist.view?id=' + $scope.selectedPlaylist, '_blank');
+            };
+
+            $scope.downloadPlaylist = function () {
+                if (!$scope.selectedPlaylist) {
+                    notifications.updateMessage('Please select a playlist to download.');
+                    return;
+                }
+                window.open(globals.settings.Server + '/download.view?playlist=' + $scope.selectedPlaylist, '_blank');
             };
 
             $scope.newPlaylist = function () {
