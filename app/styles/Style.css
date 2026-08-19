@@ -1044,7 +1044,7 @@ ul.songlist li:hover
 {
     float: left;
     height: 30px;
-    width: 630px;
+   /* width: 630px;*/
     margin: 6px 0 0 0;
 }
 .subactions > a.button {
