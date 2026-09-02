@@ -240,7 +240,8 @@ angular.module('jamstash.subsonic.controller', [
                     success: function (data) {
                         if (data["subsonic-response"].user.adminRole === true) {
                             //$.get(globals.settings.Server + '/musicFolderSettings.view?scanNow');
-                            $.get(globals.settings.Server + '/musicFolderSettings.view?scanNow&' + globals.BaseParams());
+                            //$.get(globals.settings.Server + '/musicFolderSettings.view?scanNow&' + globals.BaseParams());
+			    $.get(globals.settings.Server + '/rest/startScan');
                         } else {
                             alert('You are not logged in as an admin user!');
                         }
