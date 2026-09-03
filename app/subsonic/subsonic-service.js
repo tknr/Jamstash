@@ -55,7 +55,9 @@ function subsonicService(
         subsonicRequest      : subsonicRequest,
         toggleStar           : toggleStar,
         addToJukebox         : addToJukebox,
-        sendToJukebox        : sendToJukebox
+        sendToJukebox        : sendToJukebox,
+	getScanStatus        : getScanStatus,
+	startScan            : startScan
     });
 
     // TODO: Hyz: Remove when refactored

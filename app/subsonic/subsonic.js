@@ -241,13 +241,26 @@ angular.module('jamstash.subsonic.controller', [
                         if (data["subsonic-response"].user.adminRole === true) {
                             //$.get(globals.settings.Server + '/musicFolderSettings.view?scanNow');
                             //$.get(globals.settings.Server + '/musicFolderSettings.view?scanNow&' + globals.BaseParams());
-			    notifications.updateMessage('Rescan Called.', true);
-			    subsonic.getScanStatus();
-			    setTimeout(function () {
-			    	subsonic.startScan();
-			    }, 1000);
+			    var promise = subsonic.getScanStatus();
+			    $scope.handleErrors(promise).then(function (data) {
+                                console.log(data);
+				if(data.scanStatus.scanning === true){
+					notifications.updateMessage('still scanning ... count : '+data.scanStatus.count, true);
+					return;
+				} else {
+					var promise2 = subsonic.startScan();
+                            		$scope.handleErrors(promise2).then(function (data2) {
+                                		console.log(data2);
+                                		notifications.updateMessage('rescan started.', true);
+                            		}, function (error) {
+                                		notifications.updateMessage(error.reason, true);
+                            		});
+				}
+                            }, function (error) {
+                                notifications.updateMessage(error.reason, true);
+                            });
                         } else {
-                            alert('You are not logged in as an admin user!');
+			    notifications.updateMessage('You are not logged in as an admin user!', true);
                         }
                     }
                 });
