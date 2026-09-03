@@ -241,7 +241,11 @@ angular.module('jamstash.subsonic.controller', [
                         if (data["subsonic-response"].user.adminRole === true) {
                             //$.get(globals.settings.Server + '/musicFolderSettings.view?scanNow');
                             //$.get(globals.settings.Server + '/musicFolderSettings.view?scanNow&' + globals.BaseParams());
-			    $.get(globals.settings.Server + '/rest/startScan');
+			    notifications.updateMessage('Rescan Called.', true);
+			    subsonic.getScanStatus();
+			    setTimeout(function () {
+			    	subsonic.startScan();
+			    }, 1000);
                         } else {
                             alert('You are not logged in as an admin user!');
                         }

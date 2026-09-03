@@ -595,4 +595,11 @@ function subsonicService(
         })
         return promise;
     }
+
+    function getScanStatus() {
+        return self.subsonicRequest('getScanStatus.view');
+    }
+    function startScan() {
+        return self.subsonicRequest('startScan.view');
+    }
 }
