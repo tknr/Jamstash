@@ -8,9 +8,7 @@ angular.module('jamstash.subsonic.service', [
     'ngLodash',
     'jamstash.settings.service',
     'jamstash.model'
-])
-
-.service('subsonic', subsonicService);
+]).service('subsonic', subsonicService);
 
 subsonicService.$inject = [
     '$http',
@@ -31,33 +29,33 @@ function subsonicService(
 
     var self = this;
     _.extend(self, {
-        addToPlaylist        : addToPlaylist,
-        deletePlaylist       : deletePlaylist,
-        getAlbumByTag        : getAlbumByTag,
-        getAlbumListBy       : getAlbumListBy,
-        getArtists           : getArtists,
-        getGenres            : getGenres,
-        getMusicFolders      : getMusicFolders,
-        getPlaylist          : getPlaylist,
-        getPlaylists         : getPlaylists,
-        getPodcast           : getPodcast,
-        getPodcasts          : getPodcasts,
-        getRandomSongs       : getRandomSongs,
+        addToPlaylist: addToPlaylist,
+        deletePlaylist: deletePlaylist,
+        getAlbumByTag: getAlbumByTag,
+        getAlbumListBy: getAlbumListBy,
+        getArtists: getArtists,
+        getGenres: getGenres,
+        getMusicFolders: getMusicFolders,
+        getPlaylist: getPlaylist,
+        getPlaylists: getPlaylists,
+        getPodcast: getPodcast,
+        getPodcasts: getPodcasts,
+        getRandomSongs: getRandomSongs,
         getRandomStarredSongs: getRandomStarredSongs,
-        getDirectory         : getDirectory,
-        getStarred           : getStarred,
-        newPlaylist          : newPlaylist,
-        ping                 : ping,
+        getDirectory: getDirectory,
+        getStarred: getStarred,
+        newPlaylist: newPlaylist,
+        ping: ping,
         recursiveGetDirectory: recursiveGetDirectory,
-        savePlaylist         : savePlaylist,
-        scrobble             : scrobble,
-        search               : search,
-        subsonicRequest      : subsonicRequest,
-        toggleStar           : toggleStar,
-        addToJukebox         : addToJukebox,
-        sendToJukebox        : sendToJukebox,
-	getScanStatus        : getScanStatus,
-	startScan            : startScan
+        savePlaylist: savePlaylist,
+        scrobble: scrobble,
+        search: search,
+        subsonicRequest: subsonicRequest,
+        toggleStar: toggleStar,
+        addToJukebox: addToJukebox,
+        sendToJukebox: sendToJukebox,
+        getScanStatus: getScanStatus,
+        startScan: startScan
     });
 
     // TODO: Hyz: Remove when refactored
@@ -94,7 +92,7 @@ function subsonicService(
         // Otherwise we create a config object
         var actualConfig = config || {};
         actualConfig.params = actualConfig.params || {};
-        _.extend(actualConfig.params,  {
+        _.extend(actualConfig.params, {
             u: globals.settings.Username,
             p: globals.settings.Password,
             f: globals.settings.Protocol,
@@ -149,7 +147,7 @@ function subsonicService(
     function getArtists(folder) {
         var exception = { reason: 'No artist found on the Subsonic server.' };
         var params;
-        if (! isNaN(folder)) {
+        if (!isNaN(folder)) {
             params = {
                 musicFolderId: folder
             };
@@ -298,14 +296,14 @@ function subsonicService(
                 }
             }).then(function (subsonicResponse) {
                 var searchResult;
-                if (! _.isEmpty(subsonicResponse.searchResult2)) {
+                if (!_.isEmpty(subsonicResponse.searchResult2)) {
                     searchResult = subsonicResponse.searchResult2;
-                } else if (! _.isEmpty(subsonicResponse.search2)) {
+                } else if (!_.isEmpty(subsonicResponse.search2)) {
                     // We also check search2 because Music Cabinet doesn't respond the same thing
                     // as everyone else...
                     searchResult = subsonicResponse.search2;
                 }
-                if (! _.isEmpty(searchResult)) {
+                if (!_.isEmpty(searchResult)) {
                     // Make sure that song, album and artist are arrays using concat
                     // because Madsonic will return an object when there's only one element
                     switch (type) {
@@ -343,7 +341,7 @@ function subsonicService(
         if (genre !== undefined && genre !== '' && genre !== 'Random') {
             params.genre = genre;
         }
-        if (! isNaN(folder)) {
+        if (!isNaN(folder)) {
             params.musicFolderId = folder;
         }
         var promise = self.subsonicRequest('getRandomSongs.view', {
@@ -395,20 +393,20 @@ function subsonicService(
     function getPlaylists() {
         var exception = { reason: 'No playlist found on the Subsonic server.' };
         var promise = self.subsonicRequest('getPlaylists.view')
-        .then(function (subsonicResponse) {
-            if (subsonicResponse.playlists.playlist !== undefined) {
-                // Make sure this is an array using concat because Madsonic will return an object when there's only one element
-                var playlistArray = [].concat(subsonicResponse.playlists.playlist);
-                if (playlistArray.length > 0) {
-                    var allPlaylists = _.partition(playlistArray, function (item) {
-                        return item.owner === globals.settings.Username;
-                    });
-                    return { playlists: allPlaylists[0], playlistsPublic: allPlaylists[1] };
+            .then(function (subsonicResponse) {
+                if (subsonicResponse.playlists.playlist !== undefined) {
+                    // Make sure this is an array using concat because Madsonic will return an object when there's only one element
+                    var playlistArray = [].concat(subsonicResponse.playlists.playlist);
+                    if (playlistArray.length > 0) {
+                        var allPlaylists = _.partition(playlistArray, function (item) {
+                            return item.owner === globals.settings.Username;
+                        });
+                        return { playlists: allPlaylists[0], playlistsPublic: allPlaylists[1] };
+                    }
                 }
-            }
-            // We end up here for every else
-            return $q.reject(exception);
-        });
+                // We end up here for every else
+                return $q.reject(exception);
+            });
         return promise;
     }
 
@@ -454,7 +452,7 @@ function subsonicService(
         var songIds = _.pluck(songs, 'id');
         var promise = self.subsonicRequest('updatePlaylist.view', {
             params: {
-                playlistId :  playlistId,
+                playlistId: playlistId,
                 songIdToAdd: songIds
             }
         });
@@ -466,7 +464,7 @@ function subsonicService(
         var promise = self.subsonicRequest('createPlaylist.view', {
             params: {
                 playlistId: playlistId,
-                songId    : songIds
+                songId: songIds
             }
         });
         return promise;
@@ -475,23 +473,23 @@ function subsonicService(
     function getGenres() {
         var exception = { reason: 'No genre found on the Subsonic server.' };
         var promise = self.subsonicRequest('getGenres.view')
-        .then(function (subsonicResponse) {
-            if (subsonicResponse.genres !== undefined && subsonicResponse.genres.genre !== undefined) {
-                var genreArray = [].concat(subsonicResponse.genres.genre);
-                if (genreArray.length > 0) {
-                    var stringArray;
-                    if (genreArray[0].value) {
-                        stringArray = _.pluck(genreArray, 'value');
-                    // Of course, Madsonic doesn't return the same thing as Subsonic...
-                    } else if (genreArray[0].content) {
-                        stringArray = _.pluck(genreArray, 'content');
+            .then(function (subsonicResponse) {
+                if (subsonicResponse.genres !== undefined && subsonicResponse.genres.genre !== undefined) {
+                    var genreArray = [].concat(subsonicResponse.genres.genre);
+                    if (genreArray.length > 0) {
+                        var stringArray;
+                        if (genreArray[0].value) {
+                            stringArray = _.pluck(genreArray, 'value');
+                            // Of course, Madsonic doesn't return the same thing as Subsonic...
+                        } else if (genreArray[0].content) {
+                            stringArray = _.pluck(genreArray, 'content');
+                        }
+                        return stringArray;
                     }
-                    return stringArray;
                 }
-            }
-            // We end up here for every else
-            return $q.reject(exception);
-        });
+                // We end up here for every else
+                return $q.reject(exception);
+            });
         return promise;
     }
 
@@ -502,17 +500,17 @@ function subsonicService(
                 includeEpisodes: false
             }
         })
-        .then(function (subsonicResponse) {
-            if (subsonicResponse.podcasts !== undefined && subsonicResponse.podcasts.channel !== undefined) {
-                // Make sure this is an array using concat because Madsonic will return an object when there's only one element
-                var channelArray = [].concat(subsonicResponse.podcasts.channel);
-                if (channelArray.length > 0) {
-                    return channelArray;
+            .then(function (subsonicResponse) {
+                if (subsonicResponse.podcasts !== undefined && subsonicResponse.podcasts.channel !== undefined) {
+                    // Make sure this is an array using concat because Madsonic will return an object when there's only one element
+                    var channelArray = [].concat(subsonicResponse.podcasts.channel);
+                    if (channelArray.length > 0) {
+                        return channelArray;
+                    }
                 }
-            }
-            // We end up here for every else
-            return $q.reject(exception);
-        });
+                // We end up here for every else
+                return $q.reject(exception);
+            });
         return promise;
     }
 
@@ -570,7 +568,7 @@ function subsonicService(
                 id: item.id
             }
         }).then(function () {
-            return ! item.starred;
+            return !item.starred;
         });
         return promise;
     }
@@ -601,6 +599,7 @@ function subsonicService(
     function getScanStatus() {
         return self.subsonicRequest('getScanStatus.view');
     }
+
     function startScan() {
         return self.subsonicRequest('startScan.view');
     }
