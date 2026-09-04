@@ -239,14 +239,11 @@ angular.module('jamstash.subsonic.controller', [
                     if (data["subsonic-response"].user.adminRole === true) {
                         var promise = subsonic.getScanStatus();
                         $scope.handleErrors(promise).then(function (data) {
-                            console.log(data);
                             if (data.scanStatus.scanning === true) {
                                 notifications.updateMessage('still scanning ... count : ' + data.scanStatus.count, true);
-                                return;
                             } else {
                                 var promise2 = subsonic.startScan();
                                 $scope.handleErrors(promise2).then(function (data2) {
-                                    console.log(data2);
                                     notifications.updateMessage('rescan started.', true);
                                 }, function (error) {
                                     notifications.updateMessage(error.reason, true);
